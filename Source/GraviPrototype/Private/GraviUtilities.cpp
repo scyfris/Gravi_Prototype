@@ -55,3 +55,14 @@ int UGraviUtilities::GetQuadrantFirstIndex(FVector2D inDir)
 
 	return maxIdx;
 }
+
+TArray<FVector> UGraviUtilities::Convert2DVecArrayTo3D(const TArray<FVector2D> & inVecArry, float yPos)
+{
+	TArray<FVector> retArray;
+
+	for (int i = 0; i < inVecArry.Num(); ++i) {
+		retArray.Add(Get3DVector(inVecArry[i]));
+	}
+
+	return retArray;
+}

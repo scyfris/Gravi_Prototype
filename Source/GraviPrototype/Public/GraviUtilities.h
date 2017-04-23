@@ -32,4 +32,6 @@ public:
 	UFUNCTION(BlueprintPure, Category="GraviUtilities")
 	static int GetQuadrantFirstIndex(FVector2D inDir);
 
+	UFUNCTION(BlueprintPure, Category="GraviUtilities")
+	static TArray<FVector> Convert2DVecArrayTo3D(const TArray<FVector2D> & inVecArray, float yPos = 0.0f);
 };

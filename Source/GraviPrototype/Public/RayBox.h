@@ -11,13 +11,13 @@ struct FRayBundle {
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TArray<FHitResult> HitResults;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TArray<float> RayHitLengths;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TArray<bool> WasHit;
 
 	UPROPERTY(BlueprintReadOnly)
@@ -47,4 +47,9 @@ public:
 	// Index0Direction is the direction to get 0, 1 first.
 	UFUNCTION(BlueprintCallable)
 	void GetBoxWorldCorners(const FVector2D & index0Direction, TArray<FVector2D> & outCorners, int & outFirstIndex);
+
+	UFUNCTION(BlueprintCallable)
+		void CastRays(float inRayLengths, float inRayOffsets, int numRaysPerSide,
+			TArray<FRayBundle> & outRays, bool drawDebugLines = false, float yPos = 0.0f, float boundryScaleFraction = 0.7f, bool dummy = false);
+	
 };
