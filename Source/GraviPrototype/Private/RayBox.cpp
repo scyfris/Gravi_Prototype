@@ -6,6 +6,12 @@
 
 #define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White,text)
 
+void URayBox::SetBounds(FVector center, FVector extents)
+{
+	BoxWorldCenter = UGraviUtilities::Get2DVector(center);
+	BoxExtents = UGraviUtilities::Get2DVector(extents);
+}
+
 // Gets the box corners by looking at input vector's down direction and going counter-clockwise.
 // Index0Direction is the direction to get 0, 1 first.
 void URayBox::GetBoxWorldCorners(const FVector2D & index0Direction, TArray<FVector2D> & outCorners, int & outFirstIndex)
@@ -35,8 +41,7 @@ void URayBox::CastRays(
 	TArray<FRayBundle> & outRays,
 	bool drawDebugLines,
 	float yPos,
-	float boundryScaleFraction,
-	bool dummy)
+	float boundryScaleFraction)
 {
 	TArray<FVector2D> boxCorners;
 	int firstIndex = 0;
@@ -74,10 +79,6 @@ void URayBox::CastRays(
 
 			FVector start3 = UGraviUtilities::Get3DVector(startPoint, yPos);
 			FVector end3 = UGraviUtilities::Get3DVector(endPoint);
-			if (drawDebugLines) {
-			    DrawDebugLine(GetWorld(), start3, hits.Location, FColor(0, 255, 0), false);
-			    DrawDebugLine(GetWorld(), hits.Location, end3, FColor(255, 0, 0), false);
-			}
 			sideResults.HitResults.Add(hits);
 			sideResults.WasHit.Add(wasHit);
 			if (wasHit) {
@@ -85,6 +86,16 @@ void URayBox::CastRays(
 			}
 			else {
 				sideResults.RayHitLengths.Add(0.0f);
+			}
+
+			if (drawDebugLines) {
+				if (wasHit) {
+					DrawDebugLine(GetWorld(), start3, hits.Location, FColor(0, 255, 0), false);
+					DrawDebugLine(GetWorld(), hits.Location, end3, FColor(255, 0, 0), false);
+				}
+				else {
+					DrawDebugLine(GetWorld(), start3, end3, FColor(0, 255, 0), false);
+				}
 			}
 		}
 

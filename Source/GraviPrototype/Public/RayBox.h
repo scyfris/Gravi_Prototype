@@ -49,7 +49,10 @@ public:
 	void GetBoxWorldCorners(const FVector2D & index0Direction, TArray<FVector2D> & outCorners, int & outFirstIndex);
 
 	UFUNCTION(BlueprintCallable)
+	void SetBounds(FVector center, FVector extents);
+
+	UFUNCTION(BlueprintCallable)
 		void CastRays(float inRayLengths, float inRayOffsets, int numRaysPerSide,
-			TArray<FRayBundle> & outRays, bool drawDebugLines = false, float yPos = 0.0f, float boundryScaleFraction = 0.7f, bool dummy = false);
+			TArray<FRayBundle> & outRays, bool drawDebugLines = false, float yPos = 0.0f, float boundryScaleFraction = 0.7f);
 	
 };
