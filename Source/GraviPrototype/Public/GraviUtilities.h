@@ -34,4 +34,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="GraviUtilities")
 	static TArray<FVector> Convert2DVecArrayTo3D(const TArray<FVector2D> & inVecArray, float yPos = 0.0f);
+
+	UFUNCTION(BlueprintPure, Category="GraviUtilities")
+	// Gets the amount of inputVector in the direction of DirectionVector.  this involves normalizing directionVector
+	// and the performing a dot product.
+	static void GetVectorInDirection(const FVector2D &inputVector, const FVector2D directionVector, FVector2D & outVec);
 };

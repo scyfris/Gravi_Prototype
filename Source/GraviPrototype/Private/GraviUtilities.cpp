@@ -66,3 +66,11 @@ TArray<FVector> UGraviUtilities::Convert2DVecArrayTo3D(const TArray<FVector2D> &
 
 	return retArray;
 }
+
+void UGraviUtilities::GetVectorInDirection(const FVector2D &inputVector, const FVector2D directionVector, FVector2D & outVec)
+{
+	FVector2D normDirection = directionVector;
+	normDirection.Normalize();
+
+	outVec = FVector2D::DotProduct(normDirection, inputVector) * normDirection;
+}

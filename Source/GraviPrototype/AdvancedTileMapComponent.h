@@ -16,6 +16,6 @@ class GRAVIPROTOTYPE_API UAdvancedTileMapComponent : public UPaperTileMapCompone
 	
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "Sprite")
+	UFUNCTION(BlueprintPure, Category = "GraviUtilities")
 	static void GetTileCoordinatesFromLocalSpacePosition(const UPaperTileMapComponent * compRef, const FVector& Position, int32& OutTileX, int32& OutTileY);	
 };
