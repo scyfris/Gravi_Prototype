@@ -24,6 +24,17 @@ struct FRayBundle {
 	int NumRaysInBundle;
 };
 
+#if 0
+USTRUCT(BlueprintType)
+struct Frar {
+
+	// GENERATED_BODY doees not work
+	GENERATED_USTRUCT_BODY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int myTest;
+};
+#endif
+	
 /**
  * 
  */
@@ -31,8 +42,14 @@ UCLASS(Blueprintable, ClassGroup=(Gravi), editinlinenew, meta=(BlueprintSpawnabl
 class GRAVIPROTOTYPE_API URayBox : public UActorComponent 
 {
 	GENERATED_BODY()
-	
+
 public:
+
+#if 0
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	Frar myRar;
+#endif
+
 	// World centers of the box.  Needs to be set before casting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MustSet")
 	FVector2D BoxWorldCenter;
