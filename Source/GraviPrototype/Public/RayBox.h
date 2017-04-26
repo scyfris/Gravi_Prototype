@@ -24,17 +24,20 @@ struct FRayBundle {
 	int NumRaysInBundle;
 };
 
-#if 0
-USTRUCT(BlueprintType)
 struct Frar {
 
-	// GENERATED_BODY doees not work
-	GENERATED_USTRUCT_BODY()
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int myTest;
+
+	int dummyVal;
 };
-#endif
 	
+USTRUCT(BlueprintType)
+struct FrarWrapper {
+	GENERATED_USTRUCT_BODY()
+
+	Frar * fRarPointer;	
+};
+
 /**
  * 
  */
@@ -45,10 +48,14 @@ class GRAVIPROTOTYPE_API URayBox : public UActorComponent
 
 public:
 
-#if 0
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	Frar myRar;
-#endif
+	FrarWrapper myFrarRef;
+
+	UFUNCTION(BlueprintPure, Category="Utilities")
+	static int GetFrarMyTest(const FrarWrapper & frarRef);
+
+	UFUNCTION(BlueprintCallable, Category="Utilities")
+	static void SetFrarMyTest(FrarWrapper frarRef, int testVal);
 
 	// World centers of the box.  Needs to be set before casting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MustSet")
@@ -59,6 +66,10 @@ public:
 	FVector2D BoxExtents;
 
 public:
+
+	// Initializes "myRar" with a new operator
+	UFUNCTION(BlueprintCallable)
+    void CreateMyRar();
 	
 	// Gets the box corners by looking at input vector's down direction and going counter-clockwise.
 	// Index0Direction is the direction to get 0, 1 first.

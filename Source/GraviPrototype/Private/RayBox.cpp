@@ -34,6 +34,21 @@ void URayBox::GetBoxWorldCorners(const FVector2D & index0Direction, TArray<FVect
 	}
 }
 
+void URayBox::CreateMyRar()
+{
+	myFrarRef.fRarPointer = new Frar;
+}
+
+int URayBox::GetFrarMyTest(const FrarWrapper & frarRef)
+{
+	return frarRef.fRarPointer->myTest;
+}
+
+void URayBox::SetFrarMyTest(FrarWrapper frarRef, int testVal)
+{
+	frarRef.fRarPointer->myTest = testVal;
+}
+
 void URayBox::CastRays(
 	float inRayLengths,
 	float inRayOffsets,
